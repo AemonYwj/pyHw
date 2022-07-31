@@ -1,3 +1,12 @@
+# Problem Set 2a
+# Name: 尤韦捷
+# github repos: https://github.com/AemonYwj/pyHw
+'''
+For the record: I have based all my Hws on the problem sets of mit 
+course 6.0001, although I did wrote all the codes on my own
+'''
+
+
 # -*- coding: UTF-8 -*-
 
 from os import remove

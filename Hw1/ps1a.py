@@ -1,3 +1,12 @@
+# Problem Set 1a
+# Name: 尤韦捷
+# github repos: https://github.com/AemonYwj/pyHw
+'''
+For the record: I have based all my Hws on the problem sets of mit 
+course 6.0001, although I did wrote all the codes on my own
+'''
+
+
 # -*- coding: UTF-8 -*-
 
 total_cost = float(input("请输入你希望购买房屋的价格: "))

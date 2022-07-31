@@ -1,13 +1,17 @@
-# Problem Set 4B
-# Name: <your name here>
-# Collaborators:
-# Time Spent: x:xx
+# Problem Set 3
+# Name: 尤韦捷
+# github repos: https://github.com/AemonYwj/pyHw
+'''
+For the record: I have based all my Hws on the problem sets of mit 
+course 6.0001, although I did wrote all the codes on my own
+'''
+
 
 import string
 
-FILENAME = "ps4/words.txt"
+FILENAME = "words.txt"
 
-### HELPER CODE ###
+# 用于从words.txt中获得实际存在的词的列表
 def load_words(file_name=FILENAME):
     '''
     file_name (string): the name of the file containing 
@@ -18,14 +22,14 @@ def load_words(file_name=FILENAME):
     Depending on the size of the word list, this function may
     take a while to finish.
     '''
-    print("Loading word list from file...")
+    # print("Loading word list from file...")
     # inFile: file
     inFile = open(file_name, 'r')
     # wordlist: list of strings
     wordlist = []
     for line in inFile:
         wordlist.extend([word.lower() for word in line.split(' ')])
-    print("  ", len(wordlist), "words loaded.")
+    # print("  ", len(wordlist), "words loaded.")
     return wordlist
 
 def is_word(word_list, word):
@@ -57,16 +61,13 @@ def get_story_string():
     f.close()
     return story
 
-### END HELPER CODE ###
-
-WORDLIST_FILENAME = 'words.txt'
-
+# 基类Message
 class Message(object):
     def __init__(self, text):
         '''
         Initializes a Message object
                 
-        text (string): the message's text
+        text (string): the message's text，MUST BE LOWERCASE LETTERS!
 
         a Message object has two attributes:
             self.message_text (string, determined by input text)
@@ -143,7 +144,7 @@ class PlaintextMessage(Message):
         '''
         Initializes a PlaintextMessage object        
         
-        text (string): the message's text
+        text (string): the message's text, MUST BE LOWERCASE LETTERS!!!!!
         shift (integer): the shift associated with this message
 
         A PlaintextMessage object inherits from Message and has five attributes:
@@ -207,7 +208,7 @@ class CiphertextMessage(Message):
         '''
         Initializes a CiphertextMessage object
                 
-        text (string): the message's text
+        text (string): the message's text, MUST BE LOWERCASE LETTERS!!!!!
 
         a CiphertextMessage object has two attributes:
             self.message_text (string, determined by input text)
@@ -245,6 +246,12 @@ class CiphertextMessage(Message):
 
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
+
+        Note: for the law of ceaser encryption makes its decryption just another
+        encryption with a shift that equals to 26 minus the original shift value,
+        so what returns in the turple is the shift it used to encrypt this message
+        And I actually just copied the code I wrote above to encrypt the text...
+        :D
         '''
         punctuation = string.punctuation + ' '
         last_count = 0
@@ -292,4 +299,5 @@ if __name__ == '__main__':
     )
 
     ciphertext = CiphertextMessage(plaintext.get_message_text_encrypted())
-    print(ciphertext.decrypt_message())
+    print('Encrypted Message:',ciphertext.message_text)
+    print('Decryption Info:',ciphertext.decrypt_message())

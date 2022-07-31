@@ -1,7 +1,14 @@
+# Problem Set 2b
+# Name: 尤韦捷
+# github repos: https://github.com/AemonYwj/pyHw
+'''
+For the record: I have based all my homeworks on the problem sets of mit 
+course 6.0001, although I did write all the codes on my own.
+'''
+
 # -*- coding: UTF-8 -*-
 
 from os import remove
-
 from sympy import per
 
 

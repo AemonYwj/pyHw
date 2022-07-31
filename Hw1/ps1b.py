@@ -1,3 +1,13 @@
+# Problem Set 1b
+# Name: 尤韦捷
+# github repos: https://github.com/AemonYwj/pyHw
+'''
+For the record: I have based all my Hws on the problem sets of mit 
+course 6.0001, although I did wrote all the codes on my own
+'''
+
+
+
 from ntpath import join
 from operator import ge
 import random
@@ -6,7 +16,7 @@ import string
 #from sqlalchemy import false, true
 
 # 如果运行不了，可以考虑改一下这里的相对路径
-WORDLIST_FILENAME = 'Hw1\hangmanDict.txt'
+WORDLIST_FILENAME = 'hangmanDict.txt'
 
 
 def load_words():
