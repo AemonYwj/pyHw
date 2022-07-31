@@ -67,7 +67,7 @@ class Message(object):
         '''
         Initializes a Message object
                 
-        text (string): the message's text，MUST BE LOWERCASE LETTERS!
+        text (string): the message's text
 
         a Message object has two attributes:
             self.message_text (string, determined by input text)
@@ -112,6 +112,9 @@ class Message(object):
         for letter in string.ascii_lowercase:
             encrypted_letter = chr((ord(letter)+shift-ord('a'))%26 +ord('a'))
             dict[letter] = encrypted_letter
+        for letter in string.ascii_uppercase:
+            encrypted_letter = chr((ord(letter)+shift-ord('A'))%26 +ord('A'))
+            dict[letter] = encrypted_letter
         return dict
 
 
@@ -144,7 +147,7 @@ class PlaintextMessage(Message):
         '''
         Initializes a PlaintextMessage object        
         
-        text (string): the message's text, MUST BE LOWERCASE LETTERS!!!!!
+        text (string): the message's text
         shift (integer): the shift associated with this message
 
         A PlaintextMessage object inherits from Message and has five attributes:
@@ -208,7 +211,7 @@ class CiphertextMessage(Message):
         '''
         Initializes a CiphertextMessage object
                 
-        text (string): the message's text, MUST BE LOWERCASE LETTERS!!!!!
+        text (string): the message's text
 
         a CiphertextMessage object has two attributes:
             self.message_text (string, determined by input text)
@@ -223,10 +226,15 @@ class CiphertextMessage(Message):
         
         Returns: a dictionary containing 26 lower case letters and their decrypted 
         letters
+
+        Note: I am honestly just copying the get_encrpytion_dict func above
         '''
         dict = {}
         for letter in string.ascii_lowercase:
             encrypted_letter = chr((ord(letter) + shift-ord('a'))%26 +ord('a'))
+            dict[letter] = encrypted_letter
+        for letter in string.ascii_uppercase:
+            encrypted_letter = chr((ord(letter)+shift-ord('A'))%26 +ord('A'))
             dict[letter] = encrypted_letter
         return dict
 
@@ -283,21 +291,29 @@ class CiphertextMessage(Message):
 
 if __name__ == '__main__':
 
+    # #TEST
+    # plaintext = PlaintextMessage('hello', 2)
+    # print('Expected Output: jgnnq')
+    # print('Actual Output:', plaintext.get_message_text_encrypted())
 
-    plaintext = PlaintextMessage('hello', 2)
-    print('Expected Output: jgnnq')
-    print('Actual Output:', plaintext.get_message_text_encrypted())
 
+    # ciphertext = CiphertextMessage('jgnnq')
+    # print('Expected Output:', (24, 'hello'))
+    # print('Actual Output:', ciphertext.decrypt_message())
 
-    ciphertext = CiphertextMessage('jgnnq')
-    print('Expected Output:', (24, 'hello'))
-    print('Actual Output:', ciphertext.decrypt_message())
+    # plaintext = PlaintextMessage(
+    #     'this is a secret message, you should not be able to find out!',
+    #     13
+    # )
 
-    plaintext = PlaintextMessage(
-        'this is a secret message, you should not be able to find out!',
-        13
-    )
-
-    ciphertext = CiphertextMessage(plaintext.get_message_text_encrypted())
-    print('Encrypted Message:',ciphertext.message_text)
-    print('Decryption Info:',ciphertext.decrypt_message())
+    # ciphertext = CiphertextMessage(plaintext.get_message_text_encrypted())
+    # print('Encrypted Message:',ciphertext.message_text)
+    # print('Decryption Info:',ciphertext.decrypt_message())
+    text = input('Please enter the text you wish to encrypt:')
+    k = int(input('Please enter an intergar K with which you would like to encrypt the message:'))
+    plaintext = PlaintextMessage(text,k)
+    encrpted_text = plaintext.get_message_text_encrypted()
+    print('Your text is encrpted to be:',encrpted_text)
+    ciphertext = CiphertextMessage(encrpted_text)
+    print('Decryption Info(decryption key,decrypted message):',ciphertext.decrypt_message())
+    
